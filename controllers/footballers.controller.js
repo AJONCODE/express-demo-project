@@ -44,7 +44,7 @@ function getFootballer(req, res) {
 
 function getPlayerImage(req, res) {
   // Different OS uses path in different way some use / others use \
-  const filePath = path.join(__dirname, '..', 'public', 'son-heung-min.jpg');
+  const filePath = path.join(__dirname, '..', 'public', 'images', 'son-heung-min.jpg');
   res.sendFile(filePath);
 };
 

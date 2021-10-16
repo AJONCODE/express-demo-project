@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const footballersRouter = require('./routes/footballers.router');
 
@@ -14,6 +15,10 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
+// serving static files
+app.use('/site', express.static(path.join(__dirname, 'public')));
+
+// parses incoming requests with JSON payloads and is based on body-parser
 app.use(express.json());
 
 app.use('/footballers', footballersRouter);
