@@ -5,6 +5,10 @@ const footballersRouter = require('./routes/footballers.router');
 
 const app = express();
 
+// assigning setting view engine to hbs
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
 const PORT = 3000;
 
 app.use((req, res, next) => {
@@ -16,11 +20,17 @@ app.use((req, res, next) => {
 });
 
 // serving static files
-app.use('/site', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // parses incoming requests with JSON payloads and is based on body-parser
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.render('footballer', { 
+    title: 'Son Heung Min', 
+    caption: 'Son 7'
+  });
+})
 app.use('/footballers', footballersRouter);
 
 app.listen(PORT, () => {
